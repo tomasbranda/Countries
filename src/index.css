@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-toggle::before {
+  content: "Switch theme";
+}
+
+.theme-toggle__classic {
+  width: 2rem;
+  height: 2rem;
+}
+
