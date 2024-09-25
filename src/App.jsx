@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import CountriesList from "./CountriesList";
 import CountryDetail from "./CountryDetail";
 import Header from "./Header";
@@ -7,17 +7,15 @@ import NotFound from "./NotFound";
 
 function App() {
   return (
-    <Router>
+    <>
       <Header />
-      <div>
-        <Routes>
-          <Route exact path="/" element={<CountriesList />} />
-          <Route path="/country/:code" element={<CountryDetail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route exact path="/" element={<CountriesList />} />
+        <Route path="/country/:code" element={<CountryDetail />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
-    </Router>
+    </>
   );
 }
 

@@ -1,21 +1,31 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import NotFound from "./NotFound";
 
 function CountryDetail() {
   const [countryData, setCountryData] = useState();
+  const [isInvalid, setIsInvalid] = useState(false);
   const { code } = useParams();
 
   useEffect(() => {
-    fetch(
-      `https://restcountries.com/v3.1/alpha/${code}?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags`
-    )
-      .then((res) => res.json())
+    const url = `https://restcountries.com/v3.1/alpha/${code}?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags`;
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Country not found");
+        }
+        return res.json();
+      })
       .then((data) => setCountryData(data))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setIsInvalid(true);
+      });
   }, [code]);
 
   return (
     <>
+      {isInvalid && <NotFound />}
       {countryData && (
         <div className="container m-auto p-4">
           <Link
