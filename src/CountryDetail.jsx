@@ -27,7 +27,7 @@ function CountryDetail() {
     <>
       {isInvalid && <NotFound />}
       {countryData && (
-        <div className="container m-auto p-4">
+        <div className="container m-auto p-4 pb-24">
           <Link
             to="/"
             className="bg-white py-2 px-4 inline-block mb-8 rounded hover:scale-105 transition-all dark:bg-slate-700 dark:text-slate-100 "
